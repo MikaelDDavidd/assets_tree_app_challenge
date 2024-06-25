@@ -32,12 +32,19 @@ class HomeView extends GetView<HomeController> {
                   color: Theme.of(context).primaryColor,
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child:  Wrap(
+                child: Wrap(
                   spacing: width * 0.03,
                   crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
-                  //  Image.asset('assets/assets.png'),
-                    Text('Jaguar unit')
+                    //  Image.asset('assets/assets.png'),
+                    Text(
+                      'Jaguar unit',
+                      style: TextStyle(
+                        fontSize: containerWidth * 0.05,
+                        fontFamily: 'Roboto',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    )
                   ],
                 ),
               ),
