@@ -18,7 +18,7 @@ class HomeView extends GetView<HomeController> {
               backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
               centerTitle: true,
               title: TractianIcon(
-                width: width * 0.4,
+                width: width * 0.6,
               )),
           body: Center(
             child: Material(
@@ -32,20 +32,26 @@ class HomeView extends GetView<HomeController> {
                   color: Theme.of(context).primaryColor,
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: Wrap(
-                  spacing: width * 0.03,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  children: [
-                    //  Image.asset('assets/assets.png'),
-                    Text(
-                      'Jaguar unit',
-                      style: TextStyle(
-                        fontSize: containerWidth * 0.05,
-                        fontFamily: 'Roboto',
-                        fontWeight: FontWeight.w500,
+                child: Padding(
+                  padding: EdgeInsets.only(left: containerWidth * 0.08),
+                  child: Wrap(
+                    spacing: width * 0.03,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/companies_asset.png',
+                        color: Theme.of(context).textTheme.bodyMedium!.color,
                       ),
-                    )
-                  ],
+                      Text(
+                        'Jaguar unit',
+                        style: TextStyle(
+                          fontSize: containerWidth * 0.05,
+                          fontFamily: 'Roboto',
+                          fontWeight: FontWeight.w500,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
