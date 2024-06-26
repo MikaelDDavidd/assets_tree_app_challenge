@@ -1,3 +1,4 @@
+import 'package:assets_tree_app_challenge/app/widgets/custom_container.dart';
 import 'package:assets_tree_app_challenge/app/widgets/tractian_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,42 +21,35 @@ class HomeView extends GetView<HomeController> {
               title: TractianIcon(
                 width: width * 0.6,
               )),
-          body: Center(
-            child: Material(
-              elevation: 5,
-              borderRadius: BorderRadius.circular(8),
-              child: Container(
-                alignment: Alignment.centerLeft,
-                height: containerHeight,
-                width: containerWidth,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.only(left: containerWidth * 0.08),
-                  child: Wrap(
-                    spacing: width * 0.03,
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    children: [
-                      Image.asset(
-                        'assets/companies_asset.png',
-                        color: Theme.of(context).textTheme.bodyMedium!.color,
-                      ),
-                      Text(
-                        'Jaguar unit',
-                        style: TextStyle(
-                          fontSize: containerWidth * 0.05,
-                          fontFamily: 'Roboto',
-                          fontWeight: FontWeight.w500,
-                        ),
-                      )
-                    ],
+          body: Obx(() {
+            if (controller.isLoading.value) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
+            if (controller.errorMessage.isNotEmpty) {
+              return Center(child: Text(controller.errorMessage.value));
+            }
+
+            return ListView.builder(
+              itemCount: controller.companies.length,
+              itemBuilder: (context, index) {
+                final company = controller.companies[index];
+                return GestureDetector(
+                  child: Padding(
+                    padding:  EdgeInsets.only(bottom: containerHeight * 0.3),
+                    child: CustomContainer(
+                      title: company.name,
+                      containerHeight: containerHeight,
+                      containerWidth: containerWidth,
+                    ),
                   ),
-                ),
-              ),
-            ),
-          ),
+                  onTap: () {
+                    // Get.to(() => LocationsPage(companyId: company.id));
+                  },
+                );
+              },
+            );
+          }),
         );
       },
     );
