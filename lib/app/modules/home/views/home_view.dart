@@ -1,11 +1,12 @@
+import 'package:assets_tree_app_challenge/app/modules/home/controllers/home_controller.dart';
+import 'package:assets_tree_app_challenge/app/modules/home/views/tree_view.dart';
 import 'package:assets_tree_app_challenge/app/widgets/custom_container.dart';
 import 'package:assets_tree_app_challenge/app/widgets/tractian_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controllers/home_controller.dart';
-
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -34,9 +35,11 @@ class HomeView extends GetView<HomeController> {
               itemCount: controller.companies.length,
               itemBuilder: (context, index) {
                 final company = controller.companies[index];
+                final companyId = company.id.toString(); // Ensure companyId is a string
+
                 return GestureDetector(
                   child: Padding(
-                    padding:  EdgeInsets.only(bottom: containerHeight * 0.3),
+                    padding: EdgeInsets.only(bottom: containerHeight * 0.3),
                     child: CustomContainer(
                       title: company.name,
                       containerHeight: containerHeight,
@@ -44,7 +47,7 @@ class HomeView extends GetView<HomeController> {
                     ),
                   ),
                   onTap: () {
-                    // Get.to(() => LocationsPage(companyId: company.id));
+                    Get.to(() => TreeView(companyId: companyId));
                   },
                 );
               },
@@ -55,3 +58,5 @@ class HomeView extends GetView<HomeController> {
     );
   }
 }
+
+

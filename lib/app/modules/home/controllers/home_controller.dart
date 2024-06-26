@@ -40,7 +40,7 @@ class HomeController extends GetxController {
     }
   }
 
-  void fetchLocations(String companyId) async {
+  Future<void> fetchLocations(String companyId) async {
     isLoading.value = true;
     try {
       var data = await apiService.fetchData('companies/$companyId/locations');
@@ -52,7 +52,7 @@ class HomeController extends GetxController {
     }
   }
 
-  void fetchAssets(String companyId) async {
+  Future<void> fetchAssets(String companyId) async {
     isLoading.value = true;
     try {
       var data = await apiService.fetchData('companies/$companyId/assets');

@@ -1,3 +1,4 @@
+import 'package:assets_tree_app_challenge/app/modules/home/views/tree_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/home/bindings/home_binding.dart';
@@ -14,6 +15,11 @@ class AppPages {
     GetPage(
       name: _Paths.HOME,
       page: () => const HomeView(),
+      binding: HomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.TREE,
+      page: () =>  TreeView(companyId: '',),
       binding: HomeBinding(),
     ),
   ];
